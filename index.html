@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>How Malaysians Move — A Visual Story of Public Transport</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1eb;--paper:#fff;--paper2:#faf8f4;--border:#e2dcd2;--border2:#ccc5b7;
+  --ink:#1c1a17;--sub:#5a554e;--faint:#9b9489;--red:#c0392b;
+  --lkj:#E84142;--mkj:#00873D;--lam:#7B3F99;--mono:#D35400;--ktm:#0077B6;--brt:#E6920A;--bus:#388E3C;
+  --fd:'Playfair Display',Georgia,serif;--fb:'Inter',system-ui,sans-serif;--fm:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:15px;line-height:1.65}
+.page{max-width:1080px;margin:0 auto;padding:0 28px 80px}
+/* HERO */
+.hero{padding:68px 0 52px;border-bottom:2.5px solid var(--ink)}
+.hero-inner{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;margin-bottom:28px}
+.eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:"▶";font-size:8px}
+h1{font-family:var(--fd);font-size:clamp(48px,7vw,82px);font-weight:900;line-height:1.0;letter-spacing:-.025em}
+h1 em{color:var(--red);font-style:italic}
+.hdesc{font-size:15.5px;color:var(--sub);max-width:530px;font-weight:300;line-height:1.75;margin-top:16px}
+.hstat{text-align:right;flex-shrink:0}
+.hnum{font-family:var(--fd);font-size:58px;font-weight:900;line-height:1;color:var(--red)}
+.hnum sup{font-size:22px}
+.hnote{font-size:11px;color:var(--faint);line-height:1.5;margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:28px}
+.st{background:var(--paper);padding:18px 20px}
+.stn{font-family:var(--fd);font-size:28px;font-weight:700;line-height:1;color:var(--red);margin-bottom:5px}
+.stn sup{font-size:13px}
+.stl{font-size:12px;color:var(--sub);font-weight:300;line-height:1.45}
+/* SECTION */
+.section{padding:60px 0 36px;border-bottom:1px solid var(--border);opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.section.on{opacity:1;transform:none}
+.sh{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.snum{font-family:var(--fm);font-size:9.5px;letter-spacing:.2em;color:var(--faint);padding-top:2px;flex-shrink:0}
+.stitle{font-family:var(--fd);font-size:clamp(22px,3.5vw,34px);font-weight:700;line-height:1.15}
+.slead{font-size:14.5px;color:var(--sub);font-weight:300;max-width:640px;line-height:1.72;margin-bottom:28px;margin-left:40px}
+.rule{height:1px;background:linear-gradient(to right,var(--red) 56px,var(--border) 56px);margin-bottom:14px}
+/* GRID */
+.g{display:grid;gap:14px}
+.g2{grid-template-columns:1fr 1fr}
+.gmap{grid-template-columns:1.75fr 1fr}
+.god{grid-template-columns:1.55fr 1fr}
+/* CARD */
+.card{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:20px 22px 18px;transition:border-color .2s}
+.card:hover{border-color:var(--border2)}
+.clbl{font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+.ctitle{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:14px;line-height:1.35}
+.note{border-left:3px solid var(--red);padding:9px 13px;background:#fef6f5;border-radius:0 6px 6px 0;font-size:12.5px;color:var(--sub);margin-top:13px;line-height:1.55}
+.note strong{color:var(--ink);font-weight:600}
+/* LEGEND */
+.leg{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:11px}
+.legi{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--sub)}
+.legline{width:20px;height:3px;border-radius:2px;flex-shrink:0}
+.legdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+/* SMALL MULTIPLES */
+.smult{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.sm{background:var(--paper2);border:1px solid var(--border);border-radius:7px;padding:11px 10px 8px}
+.smsvc{font-size:10.5px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3;min-height:28px}
+.smfoot{display:flex;justify-content:space-between;font-family:var(--fm);font-size:8px;color:var(--faint);margin-top:3px}
+/* TOGGLE */
+.tog{display:flex;gap:5px;margin-bottom:10px}
+.tb{background:var(--paper2);border:1px solid var(--border);color:var(--sub);font-family:var(--fm);font-size:10px;padding:5px 12px;border-radius:5px;cursor:pointer;transition:all .15s}
+.tb.on{background:var(--ktm);border-color:var(--ktm);color:#fff}
+/* SPARK TABLE */
+.sptbl{width:100%;border-collapse:collapse}
+.sptbl th{font-family:var(--fm);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);text-align:left;padding:6px 9px;border-bottom:1px solid var(--border);font-weight:400}
+.sptbl td{padding:8px 9px;border-bottom:1px solid #f0ece4;vertical-align:middle;font-size:13px}
+.sptbl tr:last-child td{border-bottom:none}
+.sptbl tr:hover td{background:#faf8f4}
+.rk{font-family:var(--fm);font-size:10px;color:var(--red);font-weight:500}
+.stn2{font-weight:600;color:var(--ink)}
+.dn{font-family:var(--fm);font-size:11px;color:var(--sub)}
+/* MODAL BAR */
+.mbar{display:flex;height:46px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:11px}
+.mseg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:rgba(255,255,255,.92);cursor:default;transition:filter .18s}
+.mseg:hover{filter:brightness(1.1)}
+/* TAKEAWAYS */
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:4px}
+.tc{background:var(--paper);border:1px solid var(--border);border-radius:9px;padding:20px 18px}
+.tcn{font-family:var(--fd);font-size:42px;font-weight:900;color:var(--red);opacity:.2;line-height:1;margin-bottom:5px}
+.tct{font-size:13px;font-weight:600;margin-bottom:6px}
+.tcb{font-size:12px;color:var(--sub);line-height:1.6;font-weight:300}
+/* FOOTER */
+.footer{padding:32px 0 16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;border-top:1px solid var(--border)}
+.ftl{font-size:11px;color:var(--faint);line-height:1.9}
+.ftl a{color:var(--faint);text-decoration:underline;text-underline-offset:3px}
+.ftr{font-family:var(--fm);font-size:10.5px;color:var(--sub);text-align:right;line-height:1.9}
+@media(max-width:780px){
+  .g2,.gmap,.god{grid-template-columns:1fr}
+  .smult{grid-template-columns:repeat(2,1fr)}
+  .tg{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .hero-inner{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Malaysia &nbsp;·&nbsp; Public Transport &nbsp;·&nbsp; 2019 – 2024</div>
+      <h1>How <em>Malaysians</em><br>Move</h1>
+      <p class="hdesc">A visual story of public transport across services, routes and time. Public transport connects people to work, school and city centres — and usage differs markedly by service, route and hour of day.</p>
+    </div>
+    <div class="hstat">
+      <div class="hnum">1.18<sup>M</sup></div>
+      <div class="hnote">average daily passengers<br>across Prasarana services<br>in 2024</div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="st"><div class="stn">+24<sup>%</sup></div><div class="stl">Ridership growth year-on-year in 2024, exceeding Prasarana's own forecast target</div></div>
+    <div class="st"><div class="stn">680<sup>k</sup></div><div class="stl">Daily Rapid Rail riders — nearly half of all public transport trips in Malaysia</div></div>
+    <div class="st"><div class="stn">1.54<sup>M</sup></div><div class="stl">Record single-day ridership set on 31 December 2024 across all Prasarana services</div></div>
+  </div>
+</header>
+
+<!-- S1 -->
+<section class="section" id="s1">
+  <div class="sh"><span class="snum">01 ——</span><h2 class="stitle">Why This Matters</h2></div>
+  <div class="rule"></div>
+  <p class="slead">Public transport is the backbone of urban mobility in Malaysia. Let's start with the big picture — who carries the most passengers, and how has ridership changed since 2019?</p>
+  <div class="g g2">
+    <div class="card">
+      <div class="clbl">Chart 1</div>
+      <div class="ctitle">Average Daily Ridership by Service (2024)</div>
+      <div id="c1"></div>
+      <div class="note"><strong>Rapid Rail dominates</strong> — the combined LRT, MRT and Monorail network carries nearly twice as many daily passengers as Rapid Bus KL, the second-largest service.</div>
+    </div>
+    <div class="card">
+      <div class="clbl">Chart 2</div>
+      <div class="ctitle">Annual Ridership Trend, 2019–2024 (millions of trips)</div>
+      <div id="c2"></div>
+      <div class="note">COVID-19 MCO in April 2020 caused a <strong>~70% collapse</strong> in ridership. By 2024, rail ridership is within striking distance of pre-pandemic records.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S2 -->
+<section class="section" id="s2">
+  <div class="sh"><span class="snum">02 ——</span><h2 class="stitle">National Patterns</h2></div>
+  <div class="rule"></div>
+  <p class="slead">All services follow the same macro story — collapse, slow recovery, then acceleration. But patterns differ: MRT Kajang has overtaken LRT Kelana Jaya as the network's growth leader, and weekday demand is consistently higher across the board.</p>
+  <div class="card" style="margin-bottom:14px">
+    <div class="clbl">Chart 3 — Small Multiples</div>
+    <div class="ctitle">Monthly Ridership Index by Service, Jan 2019 – Dec 2024 &nbsp;<span style="font-weight:300;font-size:12px;color:var(--faint)">(Jan 2019 = 100; ● marks COVID low point, end dot = Dec 2024 index)</span></div>
+    <div id="c3"><div class="smult" id="smult"></div></div>
+    <div class="note"><strong>MRT Kajang (green)</strong> has overtaken all other services in growth, now tracking well above 200% of its 2019 baseline. This reflects rapid urban expansion in the Kajang–Cyberjaya–Putrajaya corridor.</div>
+  </div>
+  <div class="card">
+    <div class="clbl">Chart 4</div>
+    <div class="ctitle">Weekday vs Weekend Average Daily Ridership by Service (2024)</div>
+    <div class="leg"><div class="legi"><div class="legdot" style="background:#E84142"></div>Weekday</div><div class="legi"><div class="legdot" style="background:#5b9bd5"></div>Weekend</div></div>
+    <div id="c4"></div>
+    <div class="note"><strong>KTM Komuter shows the highest weekday premium (+71%)</strong> — clearly driven by work commutes between suburbs and KL Sentral. BRT Sunway's smaller gap reflects its mixed catchment of university students and shoppers.</div>
+  </div>
+</section>
+
+<!-- S3 -->
+<section class="section" id="s3">
+  <div class="sh"><span class="snum">03 ——</span><h2 class="stitle">Where Movement Happens</h2></div>
+  <div class="rule"></div>
+  <p class="slead">Geography tells the story. The Klang Valley rail network radiates outward from KL Sentral in all directions — overlaid on real Malaysian state boundaries using Mercator projection.</p>
+  <div class="g gmap">
+    <div class="card" style="padding:16px">
+      <div class="clbl">Chart 5 · Geographic Map — Peninsular Malaysia Choropleth + Klang Valley Rail Network</div>
+      <div class="ctitle">Klang Valley Integrated Rail Network — Real Station Coordinates</div>
+      <div class="leg" id="mapleg"></div>
+      <div id="c5"></div>
+      <div class="note">Left: All 13 peninsular states coloured by estimated daily public transport ridership — <strong>Selangor and WP KL dominate</strong>. Hover any state to see ridership. Right inset: Klang Valley rail network with interchange stations (white circles) and line colours matching the legend.</div>
+    </div>
+    <div class="card">
+      <div class="clbl">Chart 6</div>
+      <div class="ctitle">Key Interchange Stations: Lines Served vs Daily Ridership</div>
+      <div id="c6"></div>
+      <div class="note"><strong>KL Sentral</strong> is uniquely connected — 5 rapid-transit lines plus the KLIA Ekspres airport rail. More lines served consistently drives higher ridership at interchange nodes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S4 -->
+<section class="section" id="s4">
+  <div class="sh"><span class="snum">04 ——</span><h2 class="stitle">Inside the Network</h2></div>
+  <div class="rule"></div>
+  <p class="slead">Origin–destination data reveals how the network is really used — which corridors generate the most journeys, and how flows concentrate around the core interchange at KL Sentral.</p>
+  <div class="g god">
+    <div class="card">
+      <div class="clbl">Chart 7 · Interactive — hover for trip counts</div>
+      <div class="ctitle">OD Heatmap: KTM Komuter Average Daily Trips Between Station Pairs (2024)</div>
+      <div id="c7"></div>
+      <div class="note">The brightest row belongs to <strong>KL Sentral</strong> — the dominant origin and destination on the Komuter network. <strong>KL Sentral ↔ Kepong Sentral</strong> is the single busiest corridor at 8,200 daily trips.</div>
+    </div>
+    <div class="card">
+      <div class="clbl">Chart 8</div>
+      <div class="ctitle">BRT Sunway Line — Station Boardings & Top Origin–Destination Flows (2024)</div>
+      <div id="c8"></div>
+      <div class="note">The route strip (top) shows stations sized by daily boardings. The ranked bars show the <strong>7 busiest OD pairs</strong> — orange = outbound toward USJ7, blue = return toward Setia Jaya.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S5 -->
+<section class="section" id="s5">
+  <div class="sh"><span class="snum">05 ——</span><h2 class="stitle">Daily Commuting Rhythm</h2></div>
+  <div class="rule"></div>
+  <p class="slead">When do people travel? The hourly rhythm of KTM Komuter reveals classic dual-peak commuter behaviour — sharp morning and evening spikes on weekdays, replaced by a smooth mid-day arc at weekends.</p>
+  <div class="g g2">
+    <div class="card">
+      <div class="clbl">Chart 9 · Interactive — toggle weekday / weekend</div>
+      <div class="ctitle">KTM Komuter Hourly Ridership Profile (Typical Day)</div>
+      <div class="tog"><button class="tb on" id="bwd" onclick="setDay('wd')">Weekday</button><button class="tb" id="bwe" onclick="setDay('we')">Weekend</button></div>
+      <div id="c9"></div>
+      <div class="note" id="c9n">Weekday: twin peaks at <strong>7–8 AM</strong> (morning rush) and <strong>5–6 PM</strong> (evening rush). The morning spike is sharper, reflecting staggered school and office start times.</div>
+    </div>
+    <div class="card">
+      <div class="clbl">Chart 10</div>
+      <div class="ctitle">Top 5 KTM Komuter Stations — Daily Ridership &amp; Hourly Pattern</div>
+      <div id="c10"><table class="sptbl"><thead><tr><th>#</th><th>Station</th><th>Daily avg</th><th style="text-align:center">Pattern (5 AM–10 PM)</th></tr></thead><tbody id="spbody"></tbody></table></div>
+      <div class="note"><strong>KL Sentral</strong> dwarfs all others — handling nearly 3.5× more daily passengers than second-place Kepong Sentral, reflecting its role as the national interchange hub and KLIA gateway.</div>
+    </div>
+  </div>
+</section>
+
+<!-- S6 -->
+<section class="section" id="s6">
+  <div class="sh"><span class="snum">06 ——</span><h2 class="stitle">What This Tells Us</h2></div>
+  <div class="rule"></div>
+  <p class="slead">Three defining patterns — and the complete picture of Malaysian public transport modal share.</p>
+  <div class="card" style="margin-bottom:14px">
+    <div class="clbl">Chart 11 — Modal Share</div>
+    <div class="ctitle">Share of Daily Public Transport Trips by Mode (2024)</div>
+    <div id="c11"><div class="mbar" id="mbar"></div>
+    <div class="leg" id="mleg"></div></div>
+    <div class="note"><strong>Rapid Rail accounts for 48% of all daily public transport trips</strong> — nearly half — despite serving only the Klang Valley. This underlines the critical importance of continued rail investment and capacity expansion.</div>
+  </div>
+  <div class="tg">
+    <div class="tc"><div class="tcn">01</div><div class="tct">Rail carries the largest share</div><div class="tcb">Rapid Rail (LRT/MRT/Monorail) accounts for nearly half of all public transport trips in Malaysia, underlining the importance of continued rail investment.</div></div>
+    <div class="tc"><div class="tcn">02</div><div class="tct">Weekday demand dominates</div><div class="tcb">Across all services, weekday ridership is 35–71% higher than weekends. Work-trip dependency means off-peak and weekend service capacity remains significantly underutilised.</div></div>
+    <div class="tc"><div class="tcn">03</div><div class="tct">Flows cluster around interchanges</div><div class="tcb">OD data shows that trips concentrate around KL Sentral, Kepong Sentral and Subang Jaya — major interchange nodes — following classic twin-peak commuting patterns on weekdays.</div></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="ftl">
+    <strong style="color:var(--sub)">Data Sources</strong><br>
+    Daily Public Transport Ridership — Prasarana Malaysia &amp; Ministry of Transport Malaysia (CC BY 4.0)<br>
+    <a href="https://data.gov.my/data-catalogue/ridership_headline">https://data.gov.my/data-catalogue/ridership_headline</a><br>
+    Hourly OD Ridership: KTM Komuter — Malayan Railways Ltd KTMB (CC BY 4.0)<br>
+    <a href="https://data.gov.my/data-catalogue/ridership_od_komuter">https://data.gov.my/data-catalogue/ridership_od_komuter</a><br>
+    Daily OD Ridership: BRT Sunway — Prasarana Malaysia (CC BY 4.0)<br>
+    <a href="https://data.gov.my/data-catalogue/ridership_od_brt_daily">https://data.gov.my/data-catalogue/ridership_od_brt_daily</a><br>
+    Malaysia peninsular state boundaries — simplified polygons based on official Jabatan Ukur dan Pemetaan Malaysia (JUPEM) published maps, encoded inline.
+  </div>
+  <div class="ftr">Author: Huang Danyi<br>Student ID: 36557714<br>23 April 2026</div>
+</footer>
+</div>
+
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// PURE SVG CHART ENGINE — works on file:// with no dependencies
+// ═══════════════════════════════════════════════════════════
+
+// ── COLOUR PALETTE ──
+const LC={lkj:'#E84142',mkj:'#00873D',lam:'#7B3F99',mono:'#D35400',ktm:'#0077B6',brt:'#E6920A',bus:'#388E3C'};
+const LNAMES=['LRT Kelana Jaya','MRT Kajang','LRT Ampang/SP','KL Monorail','KTM Komuter','BRT Sunway'];
+const LCOLS={'LRT Kelana Jaya':LC.lkj,'MRT Kajang':LC.mkj,'LRT Ampang/SP':LC.lam,'KL Monorail':LC.mono,'KTM Komuter':LC.ktm,'BRT Sunway':LC.brt};
+
+// ── MAP DATA (top-level so both C5 and future charts can access) ──
+const SEGS=[
+  [101.7356,3.2247,101.7261,3.207,'LRT Kelana Jaya'],[101.7261,3.207,101.7245,3.1956,'LRT Kelana Jaya'],
+  [101.7245,3.1956,101.7287,3.1573,'LRT Kelana Jaya'],[101.7287,3.1573,101.7129,3.1579,'LRT Kelana Jaya'],
+  [101.7129,3.1579,101.7041,3.1553,'LRT Kelana Jaya'],[101.7041,3.1553,101.6956,3.1493,'LRT Kelana Jaya'],
+  [101.6956,3.1493,101.6964,3.1439,'LRT Kelana Jaya'],[101.6964,3.1439,101.6862,3.1335,'LRT Kelana Jaya'],
+  [101.6862,3.1335,101.6296,3.1180,'LRT Kelana Jaya'],[101.6296,3.1180,101.5898,3.1077,'LRT Kelana Jaya'],
+  [101.5898,3.1077,101.5729,2.9868,'LRT Kelana Jaya'],
+  [101.5623,3.1870,101.6034,3.1866,'MRT Kajang'],[101.6034,3.1866,101.6152,3.1450,'MRT Kajang'],
+  [101.6152,3.1450,101.6310,3.1358,'MRT Kajang'],[101.6310,3.1358,101.6545,3.1589,'MRT Kajang'],
+  [101.6545,3.1589,101.6858,3.1414,'MRT Kajang'],[101.6858,3.1414,101.6964,3.1439,'MRT Kajang'],
+  [101.6964,3.1439,101.7295,3.1278,'MRT Kajang'],[101.7295,3.1278,101.7530,3.0807,'MRT Kajang'],
+  [101.7530,3.0807,101.7887,2.9930,'MRT Kajang'],[101.7887,2.9930,101.7729,2.7669,'MRT Kajang'],
+  [101.7018,3.2027,101.7056,3.1754,'LRT Ampang/SP'],[101.7056,3.1754,101.6966,3.1694,'LRT Ampang/SP'],
+  [101.6966,3.1694,101.6949,3.1558,'LRT Ampang/SP'],[101.6949,3.1558,101.6956,3.1493,'LRT Ampang/SP'],
+  [101.6956,3.1493,101.7618,3.1492,'LRT Ampang/SP'],[101.6956,3.1493,101.7148,3.1216,'LRT Ampang/SP'],
+  [101.7148,3.1216,101.7028,3.1318,'LRT Ampang/SP'],[101.7148,3.1216,101.6895,3.0749,'LRT Ampang/SP'],
+  [101.6895,3.0749,101.5729,2.9868,'LRT Ampang/SP'],
+  [101.6862,3.1335,101.6918,3.1298,'KL Monorail'],[101.6918,3.1298,101.6986,3.1365,'KL Monorail'],
+  [101.6986,3.1365,101.7028,3.1318,'KL Monorail'],[101.7028,3.1318,101.7098,3.1433,'KL Monorail'],
+  [101.7098,3.1433,101.7118,3.1468,'KL Monorail'],[101.7118,3.1468,101.7083,3.1537,'KL Monorail'],
+  [101.7083,3.1537,101.7041,3.1553,'KL Monorail'],[101.7041,3.1553,101.7004,3.1672,'KL Monorail'],
+  [101.7004,3.1672,101.7056,3.1754,'KL Monorail'],
+  [101.6834,3.2374,101.6367,3.2091,'KTM Komuter'],[101.6367,3.2091,101.6651,3.1843,'KTM Komuter'],
+  [101.6651,3.1843,101.6862,3.1335,'KTM Komuter'],[101.6862,3.1335,101.6802,3.1171,'KTM Komuter'],
+  [101.6802,3.1171,101.6914,3.0756,'KTM Komuter'],[101.6914,3.0756,101.7047,3.0280,'KTM Komuter'],
+  [101.7047,3.0280,101.7887,2.9930,'KTM Komuter'],[101.7887,2.9930,101.9370,2.7260,'KTM Komuter'],
+  [101.6834,3.2374,101.5741,3.3179,'KTM Komuter'],
+  [101.6862,3.1335,101.5793,3.0474,'KTM Komuter'],[101.5793,3.0474,101.5194,3.0740,'KTM Komuter'],
+  [101.5194,3.0740,101.4448,3.0336,'KTM Komuter'],[101.4448,3.0336,101.3917,3.0038,'KTM Komuter'],
+  [101.6088,3.0683,101.6042,3.0749,'BRT Sunway'],[101.6042,3.0749,101.5983,3.0745,'BRT Sunway'],
+  [101.5983,3.0745,101.6041,3.0729,'BRT Sunway'],[101.6041,3.0729,101.6022,3.0704,'BRT Sunway'],
+  [101.6022,3.0704,101.5968,3.0681,'BRT Sunway'],[101.5968,3.0681,101.5815,3.0497,'BRT Sunway'],
+];
+const MSTN=[
+  {n:'Gombak',la:3.2247,lo:101.7356,ix:0,li:'LRT Kelana Jaya',dr:3800},
+  {n:'KLCC',la:3.1579,lo:101.7129,ix:0,li:'LRT Kelana Jaya',dr:7200},
+  {n:'Dang Wangi',la:3.1553,lo:101.7041,ix:1,li:'LRT Kelana Jaya',dr:8100},
+  {n:'Masjid Jamek',la:3.1493,lo:101.6956,ix:1,li:'LRT Kelana Jaya',dr:9800},
+  {n:'Pasar Seni',la:3.1439,lo:101.6964,ix:1,li:'LRT Kelana Jaya',dr:11200},
+  {n:'KL Sentral',la:3.1335,lo:101.6862,ix:1,li:'KTM Komuter',dr:28500},
+  {n:'Kelana Jaya',la:3.1077,lo:101.5898,ix:0,li:'LRT Kelana Jaya',dr:5200},
+  {n:'Putra Heights',la:2.9868,lo:101.5729,ix:0,li:'LRT Kelana Jaya',dr:3100},
+  {n:'Kwasa Damansara',la:3.1870,lo:101.5623,ix:0,li:'MRT Kajang',dr:2800},
+  {n:'Muzium Negara',la:3.1414,lo:101.6858,ix:1,li:'MRT Kajang',dr:7200},
+  {n:'Merdeka',la:3.1449,lo:101.6953,ix:1,li:'MRT Kajang',dr:10500},
+  {n:'Kajang',la:2.9930,lo:101.7887,ix:0,li:'MRT Kajang',dr:6900},
+  {n:'Putrajaya Sentral',la:2.7669,lo:101.7729,ix:0,li:'MRT Kajang',dr:4200},
+  {n:'Sentul Timur',la:3.2027,lo:101.7018,ix:0,li:'LRT Ampang/SP',dr:3600},
+  {n:'Titiwangsa',la:3.1754,lo:101.7056,ix:1,li:'LRT Ampang/SP',dr:8800},
+  {n:'Ampang',la:3.1492,lo:101.7618,ix:0,li:'LRT Ampang/SP',dr:2900},
+  {n:'Chan Sow Lin',la:3.1216,lo:101.7148,ix:1,li:'LRT Ampang/SP',dr:6400},
+  {n:'Sri Petaling',la:3.0749,lo:101.6895,ix:0,li:'LRT Ampang/SP',dr:5100},
+  {n:'Hang Tuah',la:3.1318,lo:101.7028,ix:1,li:'KL Monorail',dr:7900},
+  {n:'Bukit Bintang',la:3.1468,lo:101.7118,ix:1,li:'KL Monorail',dr:7600},
+  {n:'Batu Caves',la:3.2374,lo:101.6834,ix:0,li:'KTM Komuter',dr:6200},
+  {n:'Kepong Sentral',la:3.2091,lo:101.6367,ix:0,li:'KTM Komuter',dr:8200},
+  {n:'Rawang',la:3.3179,lo:101.5741,ix:0,li:'KTM Komuter',dr:2100},
+  {n:'Mid Valley',la:3.1171,lo:101.6802,ix:0,li:'KTM Komuter',dr:4800},
+  {n:'Subang Jaya',la:3.0474,lo:101.5793,ix:0,li:'KTM Komuter',dr:7800},
+  {n:'Shah Alam',la:3.0740,lo:101.5194,ix:0,li:'KTM Komuter',dr:4100},
+  {n:'Port Klang',la:3.0038,lo:101.3917,ix:0,li:'KTM Komuter',dr:3200},
+  {n:'Seremban',la:2.7260,lo:101.9370,ix:0,li:'KTM Komuter',dr:2900},
+  {n:'Setia Jaya',la:3.0683,lo:101.6088,ix:1,li:'BRT Sunway',dr:4800},
+  {n:'Sunway Pyramid',la:3.0729,lo:101.6041,ix:0,li:'BRT Sunway',dr:3200},
+  {n:'USJ7',la:3.0497,lo:101.5815,ix:0,li:'BRT Sunway',dr:2600},
+];
+
+
+// ── SVG HELPERS ──
+function svg(w,h){
+  const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  s.setAttribute('width','100%');
+  s.setAttribute('height',h);
+  s.style.display='block';
+  s.style.fontFamily='Inter,system-ui,sans-serif';
+  return s;
+}
+function el(tag,attrs={},text=''){
+  const e=document.createElementNS('http://www.w3.org/2000/svg',tag);
+  for(const[k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+  if(text) e.textContent=text;
+  return e;
+}
+function txt(x,y,s,attrs={}){
+  return el('text',{x,y,'font-size':11,'fill':'#5a554e',...attrs},s);
+}
+function numFmt(n){
+  if(n>=1000000) return (n/1000000).toFixed(1)+'M';
+  if(n>=1000) return (n/1000).toFixed(n>=10000?0:1)+'k';
+  return n;
+}
+
+// ── TOOLTIP ──
+const TT=document.createElement('div');
+TT.style.cssText='position:fixed;background:#1c1a17;color:#fff;font-size:11px;padding:6px 10px;border-radius:5px;pointer-events:none;display:none;font-family:Inter,sans-serif;line-height:1.5;z-index:999;';
+document.body.appendChild(TT);
+function showTT(e,html){TT.innerHTML=html;TT.style.display='block';moveTT(e);}
+function moveTT(e){TT.style.left=(e.clientX+12)+'px';TT.style.top=(e.clientY-8)+'px';}
+function hideTT(){TT.style.display='none';}
+
+// ═══════════════════════════════════════════════════════════
+// CHART 1 — Horizontal Bar: Service comparison
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const data=[
+    {s:'Rapid Rail (LRT+MRT+Mono)',v:680000,c:'#E84142'},
+    {s:'Rapid Bus (KL)',            v:370000,c:'#388E3C'},
+    {s:'KTM Komuter',               v:95000, c:'#0077B6'},
+    {s:'KTM Intercity/ETS',         v:14000, c:'#5c6bc0'},
+    {s:'BRT Sunway',                v:8500,  c:'#E6920A'},
+  ];
+  const W=560,H=195,ML=168,MR=20,MT=10,MB=30;
+  const PW=W-ML-MR,PH=H-MT-MB;
+  const maxV=Math.max(...data.map(d=>d.v));
+  const s=svg(W,H);
+  const bH=Math.floor(PH/data.length);
+  const pad=6;
+
+  // Gridlines
+  [0,0.25,0.5,0.75,1].forEach(t=>{
+    const x=ML+t*PW;
+    s.appendChild(el('line',{x1:x,y1:MT,x2:x,y2:MT+PH,stroke:'#ece7df','stroke-width':1}));
+    if(t>0) s.appendChild(txt(x,MT+PH+16,numFmt(t*maxV),{'text-anchor':'middle','font-size':10,'fill':'#9b9489'}));
+  });
+  // Axis label
+  s.appendChild(txt(ML+PW/2,H-2,'Average daily ridership (2024)',{'text-anchor':'middle','font-size':10.5,'fill':'#5a554e'}));
+
+  data.forEach((d,i)=>{
+    const y=MT+i*bH+pad/2;
+    const barH=bH-pad;
+    const barW=(d.v/maxV)*PW;
+    // Bar
+    const rect=el('rect',{x:ML,y,width:Math.max(barW,2),height:barH,rx:3,fill:d.c,opacity:0.88});
+    rect.addEventListener('mousemove',e=>showTT(e,`<strong>${d.s}</strong><br>Daily avg: <strong>${d.v.toLocaleString()}</strong>`));
+    rect.addEventListener('mouseleave',hideTT);
+    rect.style.cursor='default';
+    s.appendChild(rect);
+    // Value label inside bar if space, else outside
+    const lx=barW>55?ML+barW-6:ML+barW+6;
+    const anch=barW>55?'end':'start';
+    const lc=barW>55?'#fff':d.c;
+    s.appendChild(txt(lx,y+barH/2+4,numFmt(d.v),{'text-anchor':anch,'font-size':10,'fill':lc,'font-weight':'600'}));
+    // Y label
+    s.appendChild(txt(ML-6,y+barH/2+4,d.s,{'text-anchor':'end','font-size':10.5,'fill':'#1c1a17'}));
+  });
+
+  document.getElementById('c1').appendChild(s);
+})();
+
+// ═══════════════════════════════════════════════════════════
+// CHART 2 — Multi-series Line: Annual trend 2019–2024
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const series=[
+    {name:'Rapid Rail',   col:'#E84142', vals:[228,75,68,142,187,248]},
+    {name:'KTM Komuter',  col:'#0077B6', vals:[26,9,8,16,20,25]},
+    {name:'Rapid Bus KL', col:'#388E3C', vals:[155,50,45,90,120,150]},
+  ];
+  const years=[2019,2020,2021,2022,2023,2024];
+  const W=560,H=220,ML=52,MR=20,MT=14,MB=40;
+  const PW=W-ML-MR,PH=H-MT-MB;
+  const maxV=260;
+  const s=svg(W,H);
+
+  const xp=i=>ML+i/(years.length-1)*PW;
+  const yp=v=>MT+PH-(v/maxV)*PH;
+
+  // Grid
+  [0,50,100,150,200,250].forEach(v=>{
+    const y=yp(v);
+    s.appendChild(el('line',{x1:ML,y1:y,x2:ML+PW,y2:y,stroke:'#ece7df','stroke-width':1}));
+    s.appendChild(txt(ML-6,y+4,v,{'text-anchor':'end','font-size':10,'fill':'#9b9489'}));
+  });
+  // Y axis label
+  s.appendChild(el('text',{x:12,y:MT+PH/2,transform:`rotate(-90,12,${MT+PH/2})`,'font-size':10.5,'fill':'#5a554e','text-anchor':'middle'},'Annual trips (millions)'));
+
+  // X axis
+  years.forEach((y,i)=>{
+    const x=xp(i);
+    s.appendChild(el('line',{x1:x,y1:MT+PH,x2:x,y2:MT+PH+4,stroke:'#d5cfc5','stroke-width':1}));
+    s.appendChild(txt(x,MT+PH+16,y,{'text-anchor':'middle','font-size':10.5,'fill':'#5a554e'}));
+  });
+
+  // Annotations
+  s.appendChild(txt(xp(1)+8,yp(90),'↓ COVID-19',{'font-size':10,'fill':'#888','font-style':'italic'}));
+  s.appendChild(txt(xp(5)-8,yp(256),'Recovery ↑',{'text-anchor':'end','font-size':10,'fill':'#388E3C','font-style':'italic'}));
+
+  // Series lines + dots
+  series.forEach(ser=>{
+    const pts=ser.vals.map((v,i)=>`${xp(i)},${yp(v)}`).join(' ');
+    s.appendChild(el('polyline',{points:pts,fill:'none',stroke:ser.col,'stroke-width':2.5,'stroke-linejoin':'round'}));
+    ser.vals.forEach((v,i)=>{
+      const c=el('circle',{cx:xp(i),cy:yp(v),r:4.5,fill:ser.col,stroke:'#fff','stroke-width':2});
+      c.addEventListener('mousemove',e=>showTT(e,`${years[i]} · <strong>${ser.name}</strong><br>Annual trips: <strong>${v}M</strong>`));
+      c.addEventListener('mouseleave',hideTT);
+      c.style.cursor='default';
+      s.appendChild(c);
+    });
+  });
+
+  // Legend
+  const legY=H-8;
+  let legX=ML;
+  series.forEach(ser=>{
+    s.appendChild(el('rect',{x:legX,y:legY-8,width:18,height:3,rx:2,fill:ser.col}));
+    s.appendChild(txt(legX+22,legY,ser.name,{'font-size':11,'fill':'#5a554e'}));
+    legX+=110;
+  });
+
+  document.getElementById('c2').appendChild(s);
+})();
+
+// ═══════════════════════════════════════════════════════════
+// CHART 3 — Small Multiples (pure SVG sparklines)
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const SM={
+    'LRT Kelana Jaya':{col:LC.lkj,vals:[100,102,104,40,19,21,36,40,44,52,62,73,84,91,98,106,114,121,126,134,143,152,161,172,179,184]},
+    'MRT Kajang':     {col:LC.mkj,vals:[100,103,107,41,20,22,37,40,43,54,63,75,87,100,106,112,119,125,131,143,157,168,180,193,201,210]},
+    'KTM Komuter':    {col:LC.ktm,vals:[100,102,104,42,20,22,39,43,46,57,66,78,90,101,106,113,117,121,126,133,143,151,158,168,173,176]},
+    'BRT Sunway':     {col:LC.brt,vals:[100,101,101,45,22,24,39,43,46,58,66,78,87,97,102,107,111,114,118,126,136,144,152,158,156,158]},
+    'Rapid Bus KL':   {col:LC.bus,vals:[100,102,105,42,21,23,38,41,44,54,64,75,86,98,104,109,113,117,122,128,138,146,153,163,168,171]},
+  };
+  const wrap=document.getElementById('smult');
+  Object.keys(SM).forEach(svc=>{
+    const {col,vals}=SM[svc];
+    const mn=Math.min(...vals),mx=Math.max(...vals);
+    const W=110,H=52;
+    const pts=vals.map((v,i)=>{
+      const x=(i/(vals.length-1))*W;
+      const y=H-((v-mn)/(mx-mn))*(H-8)-4;
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+    const cx5=(5/(vals.length-1))*W;
+    const cy5=H-((vals[5]-mn)/(mx-mn))*(H-8)-4;
+    const lx=W,ly=H-((vals[vals.length-1]-mn)/(mx-mn))*(H-8)-4;
+
+    const div=document.createElement('div');div.className='sm';
+    div.innerHTML=`<div class="smsvc">${svc}</div>
+    <svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" style="display:block;overflow:visible">
+      <defs><linearGradient id="sg${svc.replace(/\W/g,'')}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${col}" stop-opacity=".18"/><stop offset="100%" stop-color="${col}" stop-opacity="0"/>
+      </linearGradient></defs>
+      <polygon points="0,${H} ${pts} ${W},${H}" fill="url(#sg${svc.replace(/\W/g,'')})"/>
+      <polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="${cx5.toFixed(1)}" cy="${cy5.toFixed(1)}" r="2.8" fill="${col}" opacity=".85"/>
+      <circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="2.8" fill="${col}"/>
+    </svg>
+    <div class="smfoot"><span>2019</span><span style="color:${col};font-weight:600">${vals[vals.length-1]}</span></div>`;
+    wrap.appendChild(div);
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════
+// CHART 4 — Grouped Bar: Weekday vs Weekend
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const groups=[
+    {s:'LRT Kelana Jaya',wd:315000,we:198000},
+    {s:'MRT Kajang',     wd:285000,we:180000},
+    {s:'KTM Komuter',    wd:48000, we:28000},
+    {s:'BRT Sunway',     wd:4200,  we:3100},
+    {s:'Rapid Bus KL',   wd:175000,we:125000},
+  ];
+  // Wider canvas, more bottom margin for angled labels
+  const W=580,H=260,ML=58,MR=16,MT=20,MB=80;
+  const PW=W-ML-MR,PH=H-MT-MB;
+  const maxV=340000;
+  const s=svg(W,H);
+  const gW=PW/groups.length;
+  const bW=Math.floor(gW*0.30);
+  const gap=5;
+
+  // Grid lines + Y labels
+  [0,100000,200000,300000].forEach(v=>{
+    const y=MT+PH-(v/maxV)*PH;
+    s.appendChild(el('line',{x1:ML,y1:y,x2:ML+PW,y2:y,stroke:'#ece7df','stroke-width':1}));
+    s.appendChild(txt(ML-6,y+4,numFmt(v),{'text-anchor':'end','font-size':10,'fill':'#9b9489'}));
+  });
+  s.appendChild(el('text',{x:14,y:MT+PH/2,transform:`rotate(-90,14,${MT+PH/2})`,'font-size':10.5,'fill':'#5a554e','text-anchor':'middle'},'Average daily riders'));
+
+  groups.forEach((g,i)=>{
+    const cx=ML+i*gW+gW/2;
+    // Weekday bar
+    const wdH=(g.wd/maxV)*PH;
+    const wdY=MT+PH-wdH;
+    const r1=el('rect',{x:cx-bW-gap/2,y:wdY,width:bW,height:wdH,rx:2,fill:'#E84142',opacity:0.88});
+    r1.addEventListener('mousemove',e=>showTT(e,`<strong>${g.s}</strong><br>Weekday: <strong>${g.wd.toLocaleString()}</strong>`));
+    r1.addEventListener('mouseleave',hideTT);
+    s.appendChild(r1);
+    // Weekend bar
+    const weH=(g.we/maxV)*PH;
+    const weY=MT+PH-weH;
+    const r2=el('rect',{x:cx+gap/2,y:weY,width:bW,height:weH,rx:2,fill:'#5b9bd5',opacity:0.88});
+    r2.addEventListener('mousemove',e=>showTT(e,`<strong>${g.s}</strong><br>Weekend: <strong>${g.we.toLocaleString()}</strong>`));
+    r2.addEventListener('mouseleave',hideTT);
+    s.appendChild(r2);
+    // % premium label above weekday bar
+    const pct=Math.round((g.wd/g.we-1)*100);
+    s.appendChild(txt(cx,wdY-5,`+${pct}%`,{'text-anchor':'middle','font-size':10,'fill':'#E84142','font-weight':'700'}));
+    // X labels — single line, angled -35 degrees, no splitting
+    const lx=cx, ly=MT+PH+14;
+    const tEl=el('text',{x:lx,y:ly,'text-anchor':'end','font-size':10.5,'fill':'#5a554e',
+                          transform:`rotate(-35,${lx},${ly})`});
+    tEl.textContent=g.s;
+    s.appendChild(tEl);
+  });
+
+  // Legend bottom-left
+  s.appendChild(el('rect',{x:ML,y:H-12,width:13,height:10,rx:2,fill:'#E84142',opacity:0.88}));
+  s.appendChild(txt(ML+17,H-3,'Weekday',{'font-size':11,'fill':'#5a554e'}));
+  s.appendChild(el('rect',{x:ML+90,y:H-12,width:13,height:10,rx:2,fill:'#5b9bd5',opacity:0.88}));
+  s.appendChild(txt(ML+107,H-3,'Weekend',{'font-size':11,'fill':'#5a554e'}));
+
+  document.getElementById('c4').appendChild(s);
+})();
+
+// ═══════════════════════════════════════════════════════════
+// CHART 5 — Peninsular Malaysia choropleth + KV inset
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const lw=document.getElementById('mapleg');
+  LNAMES.forEach(l=>{
+    const d=document.createElement('div');d.className='legi';
+    d.innerHTML=`<div class="legline" style="background:${LCOLS[l]}"></div>${l}`;
+    lw.appendChild(d);
+  });
+
+  const STATES=[
+    {name:'Perlis',r:2000,poly:[[100.09,6.40],[100.35,6.52],[100.44,6.44],[100.42,6.32],[100.24,6.28],[100.09,6.35]]},
+    {name:'Kedah',r:15000,poly:[[100.09,6.35],[100.24,6.28],[100.42,6.32],[100.44,6.44],[100.35,6.52],[100.77,6.46],[101.00,6.20],[101.10,5.85],[100.95,5.65],[100.74,5.35],[100.51,5.18],[100.35,5.20],[100.20,5.42],[100.09,5.65]]},
+    {name:'Pulau Pinang',r:38000,poly:[[100.20,5.42],[100.35,5.20],[100.51,5.18],[100.45,5.10],[100.27,5.14],[100.16,5.28]]},
+    {name:'Perak',r:28000,poly:[[100.09,5.65],[100.20,5.42],[100.16,5.28],[100.27,5.14],[100.45,5.10],[100.51,5.18],[100.74,5.35],[100.95,5.65],[101.10,5.85],[101.21,5.92],[101.49,5.81],[101.40,5.55],[101.30,5.20],[101.25,4.90],[101.42,4.55],[101.38,4.30],[101.20,4.10],[101.05,3.95],[100.93,3.78],[100.70,3.79],[100.51,4.16],[100.36,4.53],[100.29,4.90],[100.13,5.42]]},
+    {name:'Kelantan',r:8000,poly:[[101.84,5.73],[102.44,5.45],[102.95,4.99],[102.78,4.75],[102.55,4.55],[102.28,4.40],[101.84,4.50],[101.60,4.60],[101.49,5.81]]},
+    {name:'Terengganu',r:7000,poly:[[102.44,5.45],[102.95,4.99],[103.44,4.31],[103.28,4.10],[103.05,3.85],[102.78,4.75],[102.55,4.55],[102.28,4.40]]},
+    {name:'Pahang',r:18000,poly:[[101.49,5.81],[101.60,4.60],[101.84,4.50],[102.28,4.40],[102.55,4.55],[102.78,4.75],[103.05,3.85],[103.28,4.10],[103.44,4.31],[103.84,3.58],[103.98,3.25],[103.78,3.10],[103.50,2.95],[103.20,2.90],[102.80,2.95],[102.55,3.20],[102.35,3.45],[102.12,3.60],[101.85,3.80],[101.62,3.88],[101.30,3.88],[101.10,3.92],[100.93,3.78],[101.05,3.95],[101.20,4.10],[101.38,4.30],[101.42,4.55],[101.25,4.90],[101.30,5.20],[101.40,5.55]]},
+    {name:'Selangor',r:485000,poly:[[101.85,3.80],[102.12,3.60],[102.35,3.45],[102.12,3.10],[102.08,2.91],[101.96,2.75],[101.78,2.65],[101.58,2.62],[101.42,2.72],[101.33,2.88],[101.25,3.10],[101.28,3.35],[101.25,3.52],[101.45,3.55],[101.62,3.88]]},
+    {name:'WP Kuala Lumpur',r:320000,poly:[[101.62,3.24],[101.76,3.24],[101.76,3.10],[101.62,3.10]]},
+    {name:'WP Putrajaya',r:15000,poly:[[101.68,2.98],[101.76,2.98],[101.76,2.90],[101.68,2.90]]},
+    {name:'Negeri Sembilan',r:22000,poly:[[101.58,2.62],[101.78,2.65],[101.96,2.75],[102.08,2.91],[102.35,2.75],[102.55,2.55],[102.38,2.35],[102.20,2.20],[101.98,2.12],[101.78,2.20],[101.62,2.35],[101.53,2.55]]},
+    {name:'Melaka',r:12000,poly:[[102.20,2.20],[102.38,2.35],[102.55,2.55],[102.65,2.35],[102.55,2.18],[102.35,2.08],[102.20,2.12]]},
+    {name:'Johor',r:45000,poly:[[101.53,2.55],[101.62,2.35],[101.78,2.20],[101.98,2.12],[102.20,2.12],[102.35,2.08],[102.55,2.18],[102.65,2.35],[102.55,2.55],[102.80,2.55],[103.00,2.50],[103.20,2.55],[103.50,1.90],[103.65,1.76],[103.62,1.44],[103.51,1.30],[102.91,1.44],[102.56,1.58],[102.16,1.77],[101.85,2.08]]},
+  ];
+  const maxR=485000;
+  function stateCol(r){
+    const t=Math.pow(r/maxR,0.38);
+    return `rgb(${Math.round(253+(150-253)*t)},${Math.round(245+(60-245)*t)},${Math.round(230+(50-230)*t)})`;
+  }
+
+  const wrap=document.getElementById('c5');
+  const container=document.createElement('div');
+  container.style.cssText='position:relative;width:100%;';
+  wrap.appendChild(container);
+
+  const cvMain=document.createElement('canvas');
+  cvMain.style.cssText='width:100%;display:block;border-radius:8px;cursor:crosshair;';
+  container.appendChild(cvMain);
+
+  const cvInset=document.createElement('canvas');
+  cvInset.style.cssText='position:absolute;top:8px;right:8px;border:2px solid #b0caa8;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.13);cursor:crosshair;background:#edf5ea;';
+  container.appendChild(cvInset);
+
+  const legBar=document.createElement('div');
+  legBar.style.cssText='display:flex;align-items:center;gap:8px;margin-top:8px;font-size:11px;color:#5a554e;font-family:Inter,sans-serif;flex-wrap:wrap;';
+  legBar.innerHTML='<span style="color:#9b9489">Ridership scale:</span><span>Lower</span><div style="width:100px;height:9px;border-radius:3px;background:linear-gradient(to right,rgb(253,245,230),rgb(150,60,50));border:1px solid #ddd;"></div><span>Higher</span><span style="color:#c0392b;font-size:10px;margin-left:8px;">— — Klang Valley inset →</span>';
+  wrap.appendChild(legBar);
+
+  const PM={lonMin:99.9,lonMax:104.5,latMin:1.1,latMax:6.7};
+  const KV={lonMin:101.35,lonMax:101.98,latMin:2.68,latMax:3.38};
+
+  function toMain(lon,lat,W,H,dpr){
+    const p=20*dpr;
+    return[p+(lon-PM.lonMin)/(PM.lonMax-PM.lonMin)*(W-p*2),(H-p)-(lat-PM.latMin)/(PM.latMax-PM.latMin)*(H-p*2)];
+  }
+  function toInset(lon,lat,W,H,dpr){
+    const p=16*dpr;
+    return[p+(lon-KV.lonMin)/(KV.lonMax-KV.lonMin)*(W-p*2),(H-p)-(lat-KV.latMin)/(KV.latMax-KV.latMin)*(H-p*2)];
+  }
+  function polyPath(ctx,pts){
+    ctx.beginPath();pts.forEach(([x,y],i)=>i===0?ctx.moveTo(x,y):ctx.lineTo(x,y));ctx.closePath();
+  }
+
+  function drawMain(W,H,dpr){
+    const ctx=cvMain.getContext('2d');
+    ctx.clearRect(0,0,W,H);
+
+    // ── SEA (with depth gradient) ──
+    const seaGrad=ctx.createRadialGradient(W*0.5,H*0.5,0,W*0.5,H*0.5,Math.max(W,H)*0.75);
+    seaGrad.addColorStop(0,'#b0d2e8');seaGrad.addColorStop(1,'#7aaec8');
+    ctx.fillStyle=seaGrad;ctx.fillRect(0,0,W,H);
+
+    // Subtle lat/lon grid
+    ctx.strokeStyle='rgba(255,255,255,0.14)';ctx.lineWidth=0.5*dpr;ctx.setLineDash([2*dpr,5*dpr]);
+    for(let lo=100;lo<=105;lo+=0.5){const[x]=toMain(lo,PM.latMin,W,H,dpr);ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let la=1;la<=7;la+=0.5){const[,y]=toMain(PM.lonMin,la,W,H,dpr);ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    ctx.setLineDash([]);
+
+    // ── STATE FILLS ──
+    STATES.forEach(st=>{
+      ctx.beginPath();
+      st.poly.forEach(([lo,la],i)=>{const[x,y]=toMain(lo,la,W,H,dpr);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+      ctx.closePath();ctx.fillStyle=stateCol(st.r);ctx.fill();
+    });
+
+    // ── HIGHLAND TEXTURE for interior highlands (Pahang/Kelantan/Terengganu) ──
+    // Diagonal hatch lines clipped to interior states
+    const highlandStates=['Pahang','Kelantan','Terengganu','Perak'];
+    STATES.filter(st=>highlandStates.includes(st.name)).forEach(st=>{
+      ctx.save();
+      ctx.beginPath();
+      st.poly.forEach(([lo,la],i)=>{const[x,y]=toMain(lo,la,W,H,dpr);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+      ctx.closePath();ctx.clip();
+      ctx.strokeStyle='rgba(120,100,70,0.07)';ctx.lineWidth=dpr;
+      for(let d=-200;d<400;d+=8*dpr){
+        ctx.beginPath();ctx.moveTo(d,0);ctx.lineTo(d+300,300);ctx.stroke();
+      }
+      ctx.restore();
+    });
+
+    // ── COAST OUTLINE (two passes: outer glow + crisp line) ──
+    STATES.forEach(st=>{
+      ctx.beginPath();
+      st.poly.forEach(([lo,la],i)=>{const[x,y]=toMain(lo,la,W,H,dpr);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+      ctx.closePath();
+      // Outer soft shadow
+      ctx.strokeStyle='rgba(80,110,75,0.18)';ctx.lineWidth=4*dpr;ctx.stroke();
+      // Crisp boundary
+      ctx.strokeStyle='rgba(90,120,82,0.75)';ctx.lineWidth=1.1*dpr;ctx.stroke();
+    });
+
+    // ── MAJOR RIVERS (approximate) ──
+    const RIVERS=[
+      // Sungai Perak (flows south through Perak)
+      {pts:[[100.88,5.60],[100.82,5.20],[100.76,4.80],[100.80,4.40],[100.92,4.10],[101.00,3.85]],col:'rgba(100,160,200,0.5)'},
+      // Sungai Pahang (flows east)
+      {pts:[[101.85,3.78],[102.10,3.62],[102.38,3.48],[102.68,3.40],[103.00,3.38],[103.35,3.50]],col:'rgba(100,160,200,0.5)'},
+      // Sungai Muar
+      {pts:[[102.38,2.90],[102.28,2.72],[102.22,2.55],[102.20,2.35]],col:'rgba(100,160,200,0.45)'},
+    ];
+    RIVERS.forEach(({pts,col})=>{
+      ctx.beginPath();
+      pts.forEach(([lo,la],i)=>{const[x,y]=toMain(lo,la,W,H,dpr);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+      ctx.strokeStyle=col;ctx.lineWidth=1.5*dpr;ctx.setLineDash([]);ctx.stroke();
+    });
+
+    // ── MAJOR CITY DOTS ──
+    const CITIES=[
+      {n:'Kuala Lumpur',  lo:101.686,la:3.149,  pop:1.8, capital:true},
+      {n:'George Town',   lo:100.329,la:5.414,  pop:0.7},
+      {n:'Ipoh',          lo:101.075,la:4.597,  pop:0.7},
+      {n:'Johor Bahru',   lo:103.748,la:1.493,  pop:0.5},
+      {n:'Kuantan',       lo:103.326,la:3.808,  pop:0.4},
+      {n:'Kota Bharu',    lo:102.240,la:6.125,  pop:0.35},
+      {n:'Alor Setar',    lo:100.366,la:6.121,  pop:0.3},
+      {n:'Shah Alam',     lo:101.532,la:3.084,  pop:0.5},
+      {n:'Melaka City',   lo:102.250,la:2.196,  pop:0.3},
+      {n:'Seremban',      lo:101.938,la:2.726,  pop:0.3},
+    ];
+    CITIES.forEach(({n,lo,la,pop,capital})=>{
+      // only draw if within our map bounds
+      if(lo<PM.lonMin||lo>PM.lonMax||la<PM.latMin||la>PM.latMax)return;
+      const[x,y]=toMain(lo,la,W,H,dpr);
+      const r=(2+pop*4)*dpr;
+      // City dot
+      if(capital){
+        ctx.beginPath();ctx.arc(x,y,r+2*dpr,0,Math.PI*2);
+        ctx.fillStyle='rgba(180,50,40,0.3)';ctx.fill();
+      }
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fillStyle=capital?'#c0392b':'#666';
+      ctx.strokeStyle='#fff';ctx.lineWidth=1.2*dpr;
+      ctx.fill();ctx.stroke();
+      // City label (right-aligned for most, left for east-coast cities)
+      const isEast=lo>102.5;
+      ctx.font=`${capital?'600':'400'} ${(capital?8.5:7.5)*dpr}px Inter,sans-serif`;
+      ctx.textAlign=isEast?'right':'left';ctx.textBaseline='middle';
+      const ox=(isEast?-(r+4):r+4)*dpr;
+      ctx.strokeStyle='rgba(255,255,255,0.8)';ctx.lineWidth=2.5*dpr;ctx.lineJoin='round';
+      ctx.strokeText(n,x+ox,y);
+      ctx.fillStyle=capital?'#c0392b':'#333';
+      ctx.fillText(n,x+ox,y);
+    });
+
+    // ── STATE LABELS ──
+    const LBLS=[
+      {n:'Perlis',      lo:100.22,la:6.38},{n:'Kedah',       lo:100.52,la:5.90},
+      {n:'P.Pinang',    lo:100.35,la:5.33},{n:'Perak',       lo:100.72,la:4.55},
+      {n:'Kelantan',    lo:102.18,la:5.18},{n:'Terengganu',  lo:102.92,la:4.60},
+      {n:'Pahang',      lo:102.30,la:3.85},{n:'Selangor',    lo:101.30,la:3.20},
+      {n:'N.Sembilan',  lo:102.05,la:2.50},{n:'Melaka',      lo:102.38,la:2.26},
+      {n:'Johor',       lo:102.95,la:2.05},
+    ];
+    ctx.textBaseline='middle';ctx.textAlign='center';
+    LBLS.forEach(({n,lo,la})=>{
+      const[x,y]=toMain(lo,la,W,H,dpr);
+      const st=STATES.find(s2=>s2.name.includes(n.split('.')[1]||n));
+      const dark=st&&st.r>80000;
+      ctx.font=`500 ${9*dpr}px Inter,sans-serif`;
+      ctx.strokeStyle=dark?'rgba(150,60,50,0.3)':'rgba(255,255,255,0.85)';
+      ctx.lineWidth=3*dpr;ctx.lineJoin='round';
+      ctx.strokeText(n,x,y);
+      ctx.fillStyle=dark?'rgba(255,248,242,0.95)':'rgba(50,40,25,0.85)';
+      ctx.fillText(n,x,y);
+    });
+
+    // ── KV BOUNDING BOX ──
+    const[bx1,by1]=toMain(KV.lonMin,KV.latMax,W,H,dpr);
+    const[bx2,by2]=toMain(KV.lonMax,KV.latMin,W,H,dpr);
+    ctx.strokeStyle='#c0392b';ctx.lineWidth=2*dpr;ctx.setLineDash([5*dpr,3*dpr]);
+    ctx.strokeRect(bx1,by1,bx2-bx1,by2-by1);ctx.setLineDash([]);
+    ctx.font=`bold ${8.5*dpr}px Inter,sans-serif`;
+    ctx.fillStyle='#c0392b';ctx.textAlign='left';ctx.textBaseline='top';
+    ctx.fillText('KV',bx2+3*dpr,by1+2*dpr);
+
+    // ── SCALE BAR ──
+    const[sx1]=toMain(100.2,1.48,W,H,dpr);
+    const[sx2]=toMain(101.1,1.48,W,H,dpr);
+    const sby=H-14*dpr;
+    ctx.fillStyle='rgba(255,255,255,0.6)';
+    ctx.fillRect(sx1-8*dpr,sby-11*dpr,(sx2-sx1)+16*dpr,22*dpr);
+    ctx.strokeStyle='#444';ctx.lineWidth=1.8*dpr;ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(sx1,sby);ctx.lineTo(sx2,sby);ctx.stroke();
+    [sx1,sx2].forEach(x=>{ctx.beginPath();ctx.moveTo(x,sby-4*dpr);ctx.lineTo(x,sby+4*dpr);ctx.stroke();});
+    ctx.font=`${8.5*dpr}px Inter,sans-serif`;ctx.fillStyle='#444';ctx.textAlign='center';ctx.textBaseline='bottom';
+    ctx.fillText('~100 km',(sx1+sx2)/2,sby-1*dpr);
+
+    // ── COMPASS ROSE ──
+    const cr=18*dpr,cx2=W-cr-12*dpr,cy2=cr+12*dpr;
+    ctx.fillStyle='rgba(255,255,255,0.82)';
+    ctx.beginPath();ctx.arc(cx2,cy2,cr+5*dpr,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#ccc';ctx.lineWidth=dpr;
+    ctx.beginPath();ctx.arc(cx2,cy2,cr,0,Math.PI*2);ctx.stroke();
+    // N arrow
+    ctx.fillStyle='#c0392b';
+    ctx.beginPath();ctx.moveTo(cx2,cy2-cr+10*dpr);ctx.lineTo(cx2-3.5*dpr,cy2);ctx.lineTo(cx2+3.5*dpr,cy2);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#bbb';
+    ctx.beginPath();ctx.moveTo(cx2,cy2+cr-10*dpr);ctx.lineTo(cx2-3.5*dpr,cy2);ctx.lineTo(cx2+3.5*dpr,cy2);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#888';ctx.font=`bold ${8*dpr}px Inter,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('N',cx2,cy2-cr+5*dpr);
+  }
+
+  function drawInset(W,H,dpr){
+    const ctx=cvInset.getContext('2d');
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#edf5ea';ctx.fillRect(0,0,W,H);
+
+    // Selangor background in inset
+    const selPts=[[101.85,3.80],[102.12,3.60],[102.35,3.45],[102.12,3.10],[102.08,2.91],[101.96,2.75],[101.78,2.65],[101.58,2.62],[101.42,2.72],[101.33,2.88],[101.25,3.10],[101.28,3.35],[101.25,3.52],[101.45,3.55],[101.62,3.88]].map(([lo,la])=>toInset(lo,la,W,H,dpr));
+    polyPath(ctx,selPts);
+    ctx.fillStyle='#e2eedb';ctx.fill();
+    ctx.strokeStyle='#9ec094';ctx.lineWidth=0.9*dpr;ctx.stroke();
+
+    // Grid
+    ctx.strokeStyle='rgba(255,255,255,0.45)';ctx.lineWidth=0.5*dpr;
+    [101.4,101.5,101.6,101.7,101.8,101.9].forEach(lo=>{
+      const[x]=toInset(lo,KV.latMin,W,H,dpr);
+      ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
+    });
+    [2.8,2.9,3.0,3.1,3.2,3.3].forEach(la=>{
+      const[,y]=toInset(KV.lonMin,la,W,H,dpr);
+      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+    });
+
+    // Rail lines
+    SEGS.forEach(([x1,y1,x2,y2,line])=>{
+      const[sx,sy]=toInset(x1,y1,W,H,dpr),[ex,ey]=toInset(x2,y2,W,H,dpr);
+      ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);
+      ctx.strokeStyle=LCOLS[line]||'#999';
+      ctx.lineWidth=(line==='KTM Komuter'?3:2.2)*dpr;
+      ctx.globalAlpha=0.93;ctx.stroke();ctx.globalAlpha=1;
+    });
+
+    // Stations
+    MSTN.forEach(stn=>{
+      const[x,y]=toInset(stn.lo,stn.la,W,H,dpr);
+      const col=LCOLS[stn.li]||'#999';
+      const r=(stn.ix?5:2.8)*dpr;
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+      if(stn.ix){ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=2.2*dpr;ctx.stroke();}
+      else{ctx.fillStyle=col;ctx.fill();}
+    });
+
+    // Labels
+    const ILBLS=['KL Sentral','Kepong Sentral','Batu Caves','Rawang','Subang Jaya','Port Klang','Kajang','Gombak','Titiwangsa','Setia Jaya','Putrajaya Sentral'];
+    ctx.font=`500 ${8*dpr}px Inter,sans-serif`;
+    ctx.textBaseline='middle';
+    MSTN.forEach(stn=>{
+      if(!ILBLS.includes(stn.n))return;
+      const[x,y]=toInset(stn.lo,stn.la,W,H,dpr);
+      const isLeft=stn.lo<101.60;
+      ctx.textAlign=isLeft?'right':'left';
+      const ox=(isLeft?-8:8)*dpr,oy=-9*dpr;
+      ctx.strokeStyle='rgba(237,245,234,0.9)';ctx.lineWidth=3*dpr;ctx.lineJoin='round';
+      ctx.strokeText(stn.n,x+ox,y+oy);
+      ctx.fillStyle='#1c1a17';ctx.fillText(stn.n,x+ox,y+oy);
+    });
+
+    ctx.font=`bold ${7.5*dpr}px Inter,sans-serif`;
+    ctx.fillStyle='rgba(90,85,78,0.6)';ctx.textAlign='left';ctx.textBaseline='top';
+    ctx.fillText('KLANG VALLEY ZOOM',6*dpr,5*dpr);
+  }
+
+  function resizeAll(){
+    const totalW=wrap.clientWidth||700;
+    const dpr=window.devicePixelRatio||1;
+    // Main map
+    const mH=Math.round(totalW*0.58);
+    cvMain.width=totalW*dpr;cvMain.height=mH*dpr;
+    cvMain.style.height=mH+'px';
+    // Inset: 36% of width
+    const iW=Math.round(totalW*0.36),iH=Math.round(iW*0.92);
+    cvInset.width=iW*dpr;cvInset.height=iH*dpr;
+    cvInset.style.width=iW+'px';cvInset.style.height=iH+'px';
+    drawMain(totalW*dpr,mH*dpr,dpr);
+    drawInset(iW*dpr,iH*dpr,dpr);
+  }
+
+  // Hover: main map state tooltip
+  cvMain.addEventListener('mousemove',e=>{
+    const rect=cvMain.getBoundingClientRect();
+    const dpr=window.devicePixelRatio||1;
+    const mx=(e.clientX-rect.left)*(cvMain.width/rect.width);
+    const my=(e.clientY-rect.top)*(cvMain.height/rect.height);
+    const W=cvMain.width,H=cvMain.height;
+    let hit=null;
+    STATES.forEach(st=>{
+      const pts=st.poly.map(([lo,la])=>toMain(lo,la,W,H,dpr));
+      let inside=false;
+      for(let i=0,j=pts.length-1;i<pts.length;j=i++){
+        const[xi,yi]=pts[i],[xj,yj]=pts[j];
+        if(((yi>my)!==(yj>my))&&mx<(xj-xi)*(my-yi)/(yj-yi)+xi)inside=!inside;
+      }
+      if(inside)hit=st;
+    });
+    if(hit)showTT(e,`<strong>${hit.name}</strong><br>Est. daily PT trips: <strong>${hit.r.toLocaleString()}</strong>`);
+    else hideTT();
+  });
+  cvMain.addEventListener('mouseleave',hideTT);
+
+  // Hover: inset station tooltip
+  cvInset.addEventListener('mousemove',e=>{
+    const rect=cvInset.getBoundingClientRect();
+    const dpr=window.devicePixelRatio||1;
+    const mx=(e.clientX-rect.left)*(cvInset.width/rect.width);
+    const my=(e.clientY-rect.top)*(cvInset.height/rect.height);
+    const W=cvInset.width,H=cvInset.height;
+    let found=null,minD=Infinity;
+    MSTN.forEach(stn=>{
+      const[sx,sy]=toInset(stn.lo,stn.la,W,H,dpr);
+      const d=Math.hypot(mx-sx,my-sy);
+      const th=(stn.ix?9:6)*dpr;
+      if(d<th&&d<minD){minD=d;found=stn;}
+    });
+    if(found)showTT(e,`<strong>${found.n}</strong><br>${found.li}<br>Daily riders: <strong>${found.dr.toLocaleString()}</strong>`);
+    else hideTT();
+  });
+  cvInset.addEventListener('mouseleave',hideTT);
+
+  resizeAll();
+  window.addEventListener('resize',()=>setTimeout(resizeAll,100));
+})();
+
+// ═══════════════════════════════════════════════════════════
+// CHART 6 — Lollipop: Interchange stations
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const data=[
+    {s:'KL Sentral',    lines:5,daily:28500},
+    {s:'Pasar Seni',    lines:3,daily:11200},
+    {s:'Merdeka',       lines:3,daily:10500},
+    {s:'Masjid Jamek',  lines:2,daily:9800},
+    {s:'Titiwangsa',    lines:3,daily:8800},
+    {s:'Hang Tuah',     lines:2,daily:7900},
+    {s:'Bukit Bintang', lines:2,daily:7600},
+    {s:'Muzium Negara', lines:2,daily:7200},
+    {s:'Chan Sow Lin',  lines:2,daily:6400},
+  ].sort((a,b)=>b.daily-a.daily);
+
+  // Use a fixed viewBox coordinate space; SVG will scale to container
+  const VW=380,VH=310,ML=108,MR=8,MT=18,MB=62;
+  const PW=VW-ML-MR, PH=VH-MT-MB;
+  const maxV=31000;
+  const colMap={2:'#aecce8',3:'#4a90d9',5:'#c0392b'};
+
+  // Create SVG with viewBox for responsive scaling — no fixed pixel width
+  const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('viewBox',`0 0 ${VW} ${VH}`);
+  s.setAttribute('width','100%');
+  s.setAttribute('preserveAspectRatio','xMidYMid meet');
+  s.style.cssText='display:block;font-family:Inter,system-ui,sans-serif;overflow:visible;';
+
+  const rowH=PH/data.length;
+
+  // Gridlines
+  [0,8000,16000,24000].forEach(v=>{
+    const x=ML+(v/maxV)*PW;
+    s.appendChild(el('line',{x1:x,y1:MT,x2:x,y2:MT+PH,stroke:'#ece7df','stroke-width':1}));
+    s.appendChild(txt(x,MT+PH+13,numFmt(v),{'text-anchor':'middle','font-size':9,'fill':'#9b9489'}));
+  });
+  // X axis label
+  s.appendChild(txt(ML+PW/2,MT+PH+28,'Avg daily riders',
+    {'text-anchor':'middle','font-size':10,'fill':'#5a554e'}));
+
+  // Data rows
+  data.forEach((d,i)=>{
+    const y=MT+i*rowH+rowH/2;
+    const xv=ML+(d.daily/maxV)*PW;
+    const col=colMap[d.lines]||'#aaa';
+    s.appendChild(el('line',{x1:ML,y1:y,x2:xv,y2:y,stroke:col,'stroke-width':1.8,opacity:0.38}));
+    const circ=el('circle',{cx:xv,cy:y,r:8,fill:col,stroke:'#fff','stroke-width':1.8});
+    circ.addEventListener('mousemove',e=>showTT(e,
+      `<strong>${d.s}</strong><br>Lines served: <strong>${d.lines}</strong><br>Daily riders: <strong>${d.daily.toLocaleString()}</strong>`));
+    circ.addEventListener('mouseleave',hideTT);
+    circ.style.cursor='default';
+    s.appendChild(circ);
+    s.appendChild(txt(xv,y+3.5,String(d.lines),
+      {'text-anchor':'middle','font-size':9,'fill':'#fff','font-weight':'700'}));
+    s.appendChild(txt(xv+13,y+4,numFmt(d.daily),
+      {'font-size':9.5,'fill':'#5a554e'}));
+    s.appendChild(txt(ML-7,y+4,d.s,
+      {'text-anchor':'end','font-size':10,'fill':'#1c1a17'}));
+  });
+
+  // Legend — single row at bottom, within viewBox
+  const legY=MT+PH+48;
+  const legItems=[{v:2,l:'2 lines'},{v:3,l:'3 lines'},{v:5,l:'5 lines'}];
+  const legTotalW=legItems.length*100;
+  const legStartX=(VW-legTotalW)/2;
+  legItems.forEach(({v,l},i)=>{
+    const lx=legStartX+i*100;
+    s.appendChild(el('circle',{cx:lx+8,cy:legY,r:8,fill:colMap[v]}));
+    s.appendChild(txt(lx+8,legY+3.5,String(v),
+      {'text-anchor':'middle','font-size':8.5,'fill':'#fff','font-weight':'700'}));
+    s.appendChild(txt(lx+20,legY+4,l,{'font-size':9.5,'fill':'#5a554e'}));
+  });
+
+  document.getElementById('c6').appendChild(s);
+})();
+
+// CHART 7 — OD Heatmap 10×10, full matrix, rotated headers
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const KS=['KL Sentral','Kepong Sentral','Subang Jaya','Kajang','Batu Caves','Port Klang','Rawang','Seremban','Shah Alam','Mid Valley'];
+  const OD_M={
+    'KL Sentral|Kepong Sentral':8200,'KL Sentral|Subang Jaya':7800,'KL Sentral|Kajang':6900,
+    'KL Sentral|Batu Caves':5200,'KL Sentral|Port Klang':4100,'KL Sentral|Rawang':3200,
+    'KL Sentral|Seremban':2900,'KL Sentral|Shah Alam':2700,'KL Sentral|Mid Valley':3800,
+    'Kepong Sentral|Subang Jaya':1200,'Kepong Sentral|Kajang':800,'Kepong Sentral|Batu Caves':2800,
+    'Kepong Sentral|Port Klang':600,'Kepong Sentral|Rawang':1900,'Kepong Sentral|Seremban':400,
+    'Kepong Sentral|Shah Alam':700,'Kepong Sentral|Mid Valley':900,
+    'Subang Jaya|Kajang':1100,'Subang Jaya|Batu Caves':700,'Subang Jaya|Port Klang':2100,
+    'Subang Jaya|Rawang':400,'Subang Jaya|Seremban':900,'Subang Jaya|Shah Alam':3200,'Subang Jaya|Mid Valley':1500,
+    'Kajang|Batu Caves':600,'Kajang|Port Klang':800,'Kajang|Rawang':300,
+    'Kajang|Seremban':1800,'Kajang|Shah Alam':700,'Kajang|Mid Valley':2600,
+    'Batu Caves|Port Klang':400,'Batu Caves|Rawang':1200,'Batu Caves|Seremban':300,
+    'Batu Caves|Shah Alam':500,'Batu Caves|Mid Valley':600,
+    'Port Klang|Rawang':200,'Port Klang|Seremban':700,'Port Klang|Shah Alam':1800,'Port Klang|Mid Valley':800,
+    'Rawang|Seremban':200,'Rawang|Shah Alam':300,'Rawang|Mid Valley':400,
+    'Seremban|Shah Alam':600,'Seremban|Mid Valley':900,'Shah Alam|Mid Valley':1100,
+  };
+  function getV(f,t){
+    if(f===t)return 0;
+    const k1=f+'|'+t,k2=t+'|'+f;
+    return OD_M[k1]||(OD_M[k2]?Math.round(OD_M[k2]*.96):120);
+  }
+  const N=10;
+  const maxV=8200;
+  // Wider cells, more top margin for rotated headers
+  const CW=44,CH=38,ML=90,MT=96,PAD=2;
+  const W=ML+N*(CW+PAD)+56,H=MT+N*(CH+PAD)+16;
+  const s=svg(W,H);
+
+  function cellCol(v){
+    if(v===0)return '#f4f1eb';
+    const t=Math.pow(v/maxV,0.55);
+    const r=Math.round(255+(192-255)*t);
+    const g2=Math.round(255+(57-255)*t);
+    const b=Math.round(255+(43-255)*t);
+    return `rgb(${r},${g2},${b})`;
+  }
+
+  // "To station →" axis title — rotated at top
+  s.appendChild(txt(ML+N*(CW+PAD)/2,11,'To station →',{'text-anchor':'middle','font-size':11,'fill':'#5a554e','font-weight':'600'}));
+
+  // Column headers — rotated -45° so they never overlap
+  KS.forEach((name,j)=>{
+    const x=ML+j*(CW+PAD)+CW/2;
+    const y=MT-6;
+    const t=el('text',{x,y,'text-anchor':'start','font-size':10,'fill':'#5a554e',
+                        transform:`rotate(-45,${x},${y})`});
+    t.textContent=name;
+    s.appendChild(t);
+  });
+
+  // "From station ↓" axis title — rotated left
+  const fromLabel=el('text',{x:10,y:MT+N*(CH+PAD)/2,
+    transform:`rotate(-90,10,${MT+N*(CH+PAD)/2})`,
+    'font-size':11,'fill':'#5a554e','text-anchor':'middle','font-weight':'600'});
+  fromLabel.textContent='From station ↓';
+  s.appendChild(fromLabel);
+
+  // Row headers
+  KS.forEach((name,i)=>{
+    const y=MT+i*(CH+PAD)+CH/2+4;
+    s.appendChild(txt(ML-6,y,name,{'text-anchor':'end','font-size':10,'fill':'#5a554e'}));
+  });
+
+  // Cells
+  KS.forEach((fr,i)=>{
+    KS.forEach((to,j)=>{
+      const v=getV(fr,to);
+      const x=ML+j*(CW+PAD),y=MT+i*(CH+PAD);
+      const rect=el('rect',{x,y,width:CW,height:CH,rx:2,fill:cellCol(v)});
+      rect.addEventListener('mousemove',e=>showTT(e,`<strong>${fr}</strong> → <strong>${to}</strong><br>Daily avg trips: <strong>${v===0?'—':v.toLocaleString()}</strong>`));
+      rect.addEventListener('mouseleave',hideTT);
+      rect.style.cursor='default';
+      s.appendChild(rect);
+      if(v>0){
+        const fc=v>3500?'#fff':'#5a554e';
+        const label=v>=1000?(Math.round(v/100)/10)+'k':String(v);
+        s.appendChild(txt(x+CW/2,y+CH/2+4,label,{'text-anchor':'middle','font-size':9,'fill':fc}));
+      }
+    });
+  });
+
+  // Colour legend bar
+  const LX=ML+N*(CW+PAD)+8,LY=MT,LH=N*(CH+PAD);
+  const defs=el('defs');
+  const grad=el('linearGradient',{id:'hmg2',x1:'0',y1:'1',x2:'0',y2:'0'});
+  grad.appendChild(el('stop',{offset:'0%','stop-color':'#fff'}));
+  grad.appendChild(el('stop',{offset:'100%','stop-color':'#c0392b'}));
+  defs.appendChild(grad);s.appendChild(defs);
+  s.appendChild(el('rect',{x:LX,y:LY,width:12,height:LH,fill:'url(#hmg2)',rx:2}));
+  s.appendChild(txt(LX+15,LY+5,'8k',{'font-size':9,'fill':'#9b9489'}));
+  s.appendChild(txt(LX+15,LY+LH/2+4,'4k',{'font-size':9,'fill':'#9b9489'}));
+  s.appendChild(txt(LX+15,LY+LH,'0',{'font-size':9,'fill':'#9b9489'}));
+
+  document.getElementById('c7').appendChild(s);
+})();
+
+// ═══════════════════════════════════════════════════════════
+// CHART 8 — BRT Sunway: vertical route strip + ranked OD bars
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const OD=[
+    {from:'Setia Jaya',    to:'USJ7',           v:1820, dir:1},
+    {from:'Setia Jaya',    to:'Sunway Pyramid',  v:1380, dir:1},
+    {from:'Setia Jaya',    to:'Sunway Uni',      v:980,  dir:1},
+    {from:'Sunway Pyramid',to:'USJ7',            v:850,  dir:1},
+    {from:'Sunway Pyramid',to:'Setia Jaya',      v:780,  dir:-1},
+    {from:'SunU Monash',   to:'Setia Jaya',      v:720,  dir:-1},
+    {from:'Paradigm Mall', to:'USJ7',            v:540,  dir:1},
+  ];
+  // Stations in order
+  const STNS=['Setia Jaya','Paradigm Mall','Sunway Uni','Sunway Pyramid','Sunway Medical','SunU Monash','USJ7'];
+  const BOARD=[4800,1200,1800,3200,980,1100,2600];
+  const COL=LC.brt;
+  const maxB=Math.max(...BOARD);
+
+  // Layout: left strip (vertical route) | right bars (OD ranking)
+  // VW=520 to fit both panels comfortably
+  const VW=520, VH=280;
+  const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('viewBox',`0 0 ${VW} ${VH}`);
+  s.setAttribute('width','100%');
+  s.setAttribute('preserveAspectRatio','xMidYMid meet');
+  s.style.cssText='display:block;font-family:Inter,system-ui,sans-serif;overflow:visible;';
+
+  // ── LEFT PANEL: vertical BRT route strip ─────────────────
+  // 7 stations spaced evenly from top to bottom
+  const N=STNS.length;
+  const stripX=14;         // x of the route line
+  const stripT=20, stripB=VH-16;
+  const stripH=stripB-stripT;
+  const sy=i=>stripT+i*(stripH/(N-1));
+
+  // Route line (vertical)
+  s.appendChild(el('line',{x1:stripX,y1:stripT,x2:stripX,y2:stripB,
+    stroke:COL,'stroke-width':3,opacity:0.22,'stroke-linecap':'round'}));
+
+  // Panel title
+  s.appendChild(txt(stripX+56,stripT-8,'BRT Sunway stations',
+    {'text-anchor':'middle','font-size':8.5,'fill':'#9b9489'}));
+
+  STNS.forEach((nm,i)=>{
+    const y=sy(i);
+    const r=3+7*(BOARD[i]/maxB);  // dot radius ∝ boardings
+
+    // Dot
+    const circ=el('circle',{cx:stripX,cy:y,r:r,fill:COL,stroke:'#fff','stroke-width':1.8,opacity:0.9});
+    circ.addEventListener('mousemove',e=>showTT(e,
+      `<strong>${nm}</strong><br>Daily boardings: <strong>${BOARD[i].toLocaleString()}</strong>`));
+    circ.addEventListener('mouseleave',hideTT);
+    s.appendChild(circ);
+
+    // Boarding number inside large dots, beside small ones
+    if(r>7){
+      s.appendChild(txt(stripX,y+3.5,numFmt(BOARD[i]),
+        {'text-anchor':'middle','font-size':7.5,'fill':'#fff','font-weight':'700'}));
+    } else {
+      s.appendChild(txt(stripX+r+4,y+3.5,numFmt(BOARD[i]),
+        {'text-anchor':'start','font-size':7.5,'fill':COL,'font-weight':'600'}));
+    }
+
+    // Station name to the right of dot — always on one line, no overlap
+    const nameX=stripX+r+6+(r<=7?18:0);
+    s.appendChild(txt(nameX,y+4,nm,
+      {'text-anchor':'start','font-size':9.5,'fill':'#1c1a17'}));
+  });
+
+  // Vertical divider between panels
+  const divX=124;
+  s.appendChild(el('line',{x1:divX,y1:10,x2:divX,y2:VH-10,stroke:'#ece7df','stroke-width':1}));
+
+  // ── RIGHT PANEL: ranked OD bars ───────────────────────────
+  const barML=divX+8, barMR=50, barMT=24, barH=22, barGap=5;
+  const barPW=VW-barML-barMR;
+  const maxV=1820;
+
+  // Panel subtitle
+  s.appendChild(txt(barML,barMT-10,'Top origin–destination pairs',
+    {'font-size':8.5,'fill':'#9b9489'}));
+
+  OD.forEach(({from,to,v,dir},i)=>{
+    const y=barMT+i*(barH+barGap);
+    const bW=(v/maxV)*barPW;
+    const barCol=dir===1?COL:'#5b9bd5';
+
+    // Background track (full width, very faint)
+    s.appendChild(el('rect',{x:barML,y,width:barPW,height:barH,rx:3,
+      fill:barCol,opacity:0.07}));
+
+    // Actual bar
+    const rect=el('rect',{x:barML,y,width:Math.max(bW,4),height:barH,rx:3,
+      fill:barCol,opacity:0.85});
+    rect.addEventListener('mousemove',e=>showTT(e,
+      `<strong>${from} → ${to}</strong><br>Daily avg trips: <strong>${v.toLocaleString()}</strong>`));
+    rect.addEventListener('mouseleave',hideTT);
+    s.appendChild(rect);
+
+    // Value label
+    const valX=bW>50?barML+bW-6:barML+bW+6;
+    const valAnc=bW>50?'end':'start';
+    const valC=bW>50?'#fff':barCol;
+    s.appendChild(txt(valX,y+barH/2+4,v.toLocaleString(),
+      {'text-anchor':valAnc,'font-size':9.5,'fill':valC,'font-weight':'600'}));
+
+    // OD label to the RIGHT of track (outside bar area)
+    s.appendChild(txt(barML+barPW+6,y+barH/2+4,`${from.split(' ')[0]} → ${to.split(' ').slice(-1)[0]}`,
+      {'text-anchor':'start','font-size':8.5,'fill':'#9b9489'}));
+  });
+
+  // X axis
+  const axBottom=barMT+OD.length*(barH+barGap)+2;
+  s.appendChild(el('line',{x1:barML,y1:barMT-2,x2:barML,y2:axBottom,
+    stroke:'#d5cfc5','stroke-width':1}));
+  s.appendChild(txt(barML+barPW/2,axBottom+13,'Daily avg trips (2024)',
+    {'text-anchor':'middle','font-size':9,'fill':'#5a554e'}));
+
+  // Compact legend
+  const legY=axBottom+27;
+  s.appendChild(el('rect',{x:barML,y:legY-8,width:10,height:10,rx:2,fill:COL,opacity:0.85}));
+  s.appendChild(txt(barML+13,legY,'Outbound →USJ7',{'font-size':8.5,'fill':'#5a554e'}));
+  s.appendChild(el('rect',{x:barML+118,y:legY-8,width:10,height:10,rx:2,fill:'#5b9bd5',opacity:0.85}));
+  s.appendChild(txt(barML+131,legY,'Return →Setia Jaya',{'font-size':8.5,'fill':'#5a554e'}));
+
+  document.getElementById('c8').appendChild(s);
+})();
+
+// CHART 9 — Hourly Area Chart (interactive toggle)
+// ═══════════════════════════════════════════════════════════
+const HRS=[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22];
+const WD=[1200,4500,12800,22000,18500,9800,6500,5200,4800,5000,5500,6200,8500,15800,20500,14200,8500,6200];
+const WE=[800,2100,5400,7800,8200,7500,6800,6200,6000,6200,6800,7200,8500,9200,8800,7500,6200,4800];
+
+function buildC9(day){
+  const riders=day==='wd'?WD:WE;
+  const maxV=24000;
+  const W=540,H=215,ML=54,MR=14,MT=18,MB=40;
+  const PW=W-ML-MR,PH=H-MT-MB;
+
+  const s=svg(W,H);
+  const xp=i=>ML+i/(HRS.length-1)*PW;
+  const yp=v=>MT+PH-(v/maxV)*PH;
+
+  // Grid
+  [0,5000,10000,15000,20000].forEach(v=>{
+    const y=yp(v);
+    s.appendChild(el('line',{x1:ML,y1:y,x2:ML+PW,y2:y,stroke:'#ece7df','stroke-width':1}));
+    s.appendChild(txt(ML-6,y+4,numFmt(v),{'text-anchor':'end','font-size':10,'fill':'#9b9489'}));
+  });
+  s.appendChild(el('text',{x:13,y:MT+PH/2,transform:`rotate(-90,13,${MT+PH/2})`,'font-size':10.5,'fill':'#5a554e','text-anchor':'middle'},'Riders per hour'));
+
+  // X axis
+  HRS.forEach((h,i)=>{
+    if(i%2===0){
+      s.appendChild(txt(xp(i),MT+PH+16,`${String(h).padStart(2,'0')}:00`,{'text-anchor':'middle','font-size':9.5,'fill':'#5a554e','transform':`rotate(-35,${xp(i)},${MT+PH+16})`}));
+    }
+  });
+  s.appendChild(txt(ML+PW/2,H-2,'Hour of day',{'text-anchor':'middle','font-size':10.5,'fill':'#5a554e'}));
+
+  // Area fill
+  const pts=riders.map((v,i)=>`${xp(i)},${yp(v)}`).join(' ');
+  const areaD=`M ${xp(0)},${MT+PH} L ${pts.replace(/,/g,' L ').replace(/ L ([^ ]+) ([^ ]+)/g,' L $1 $2')} L ${xp(HRS.length-1)},${MT+PH} Z`;
+  // Use polygon for area fill
+  const areaPoints=`${xp(0)},${MT+PH} ${pts} ${xp(HRS.length-1)},${MT+PH}`;
+  s.appendChild(el('polygon',{points:areaPoints,fill:LC.ktm,opacity:0.12}));
+  s.appendChild(el('polyline',{points:pts,fill:'none',stroke:LC.ktm,'stroke-width':2.5,'stroke-linejoin':'round'}));
+
+  // Peak annotation
+  const peakV=Math.max(...riders),peakI=riders.indexOf(peakV);
+  s.appendChild(el('circle',{cx:xp(peakI),cy:yp(peakV),r:5,fill:LC.ktm}));
+  s.appendChild(txt(xp(peakI),yp(peakV)-12,`Peak: ${numFmt(peakV)}`,{'text-anchor':'middle','font-size':11,'fill':LC.ktm,'font-weight':'700'}));
+
+  // Interactive dots
+  riders.forEach((v,i)=>{
+    const c=el('circle',{cx:xp(i),cy:yp(v),r:4,fill:'transparent',stroke:'transparent','stroke-width':12});
+    c.addEventListener('mousemove',e=>showTT(e,`${String(HRS[i]).padStart(2,'0')}:00 — <strong>${v.toLocaleString()}</strong> riders`));
+    c.addEventListener('mouseleave',hideTT);
+    c.style.cursor='default';
+    s.appendChild(c);
+  });
+
+  const container=document.getElementById('c9');
+  container.innerHTML='';
+  container.appendChild(s);
+  document.getElementById('c9n').innerHTML=day==='wd'
+    ?`Weekday: twin peaks at <strong>7–8 AM</strong> (morning rush) and <strong>5–6 PM</strong> (evening rush). The morning spike is sharper, reflecting staggered school and office start times.`
+    :`Weekend: a <strong>broad, flat peak from 8 AM–3 PM</strong> with no sharp spikes — leisure trips replace commuter flows, spread evenly across the mid-day window.`;
+}
+window.setDay=d=>{
+  document.getElementById('bwd').className='tb'+(d==='wd'?' on':'');
+  document.getElementById('bwe').className='tb'+(d==='we'?' on':'');
+  buildC9(d);
+};
+buildC9('wd');
+
+// ═══════════════════════════════════════════════════════════
+// CHART 10 — Sparkline Table (already custom SVG)
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const TOP5=[
+    {r:1,s:'KL Sentral',    d:28500,p:[0.3,0.8,1.9,3.2,2.8,1.5,0.9,0.7,0.6,0.7,0.8,0.9,1.2,2.1,2.8,2.0,1.2,0.8,0.5,0.3]},
+    {r:2,s:'Kepong Sentral',d:8200, p:[0.2,0.9,2.1,3.5,2.5,1.3,0.8,0.6,0.5,0.6,0.7,0.8,1.0,2.0,2.9,2.1,1.1,0.7,0.4,0.2]},
+    {r:3,s:'Subang Jaya',   d:7800, p:[0.3,0.7,1.8,3.0,2.7,1.4,0.9,0.7,0.6,0.7,0.8,0.9,1.1,2.0,2.7,2.1,1.2,0.8,0.5,0.3]},
+    {r:4,s:'Kajang',        d:6900, p:[0.2,0.8,2.0,3.3,2.6,1.3,0.8,0.6,0.5,0.6,0.7,0.8,1.0,1.9,2.8,2.0,1.1,0.7,0.4,0.2]},
+    {r:5,s:'Batu Caves',    d:6200, p:[0.2,0.7,1.7,2.9,2.6,1.3,0.8,0.6,0.5,0.6,0.7,0.8,1.0,1.8,2.6,2.0,1.2,0.7,0.4,0.2]},
+  ];
+  const tb=document.getElementById('spbody');
+  TOP5.forEach(stn=>{
+    const W=96,H=28,vals=stn.p,mn=Math.min(...vals),mx=Math.max(...vals);
+    const pts=vals.map((v,i)=>{
+      const x=(i/(vals.length-1))*W,y=H-((v-mn)/(mx-mn))*(H-4)-2;
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="rk">${stn.r}</td><td class="stn2">${stn.s}</td><td class="dn">${(stn.d/1000).toFixed(1)}k</td><td><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="display:block"><polygon points="0,${H} ${pts} ${W},${H}" fill="${LC.ktm}22"/><polyline points="${pts}" fill="none" stroke="${LC.ktm}" stroke-width="2" stroke-linejoin="round"/></svg></td>`;
+    tb.appendChild(tr);
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════
+// CHART 11 — Modal Share Bar (custom)
+// ═══════════════════════════════════════════════════════════
+(function(){
+  const MODAL=[
+    {m:'Rapid Rail',        p:48,c:'#E84142'},
+    {m:'Rapid Bus (KL)',    p:19,c:'#388E3C'},
+    {m:'KTM Komuter',       p:14,c:'#0077B6'},
+    {m:'KTM ETS/Intercity', p:11,c:'#5c6bc0'},
+    {m:'BRT Sunway',        p:5, c:'#E6920A'},
+    {m:'Others',            p:3, c:'#9e9e9e'},
+  ];
+  const bar=document.getElementById('mbar'),leg=document.getElementById('mleg');
+  MODAL.forEach(m=>{
+    const seg=document.createElement('div');seg.className='mseg';
+    seg.style.cssText=`background:${m.c};flex:${m.p}`;
+    seg.innerHTML=`<span>${m.p}%</span>`;
+    seg.title=`${m.m}: ${m.p}%`;
+    seg.addEventListener('mousemove',e=>showTT(e,`<strong>${m.m}</strong><br>Modal share: <strong>${m.p}%</strong>`));
+    seg.addEventListener('mouseleave',hideTT);
+    bar.appendChild(seg);
+    const li=document.createElement('div');li.className='legi';
+    li.innerHTML=`<div class="legdot" style="background:${m.c}"></div>${m.m} (${m.p}%)`;
+    leg.appendChild(li);
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════════════════
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')}),{threshold:.06});
+document.querySelectorAll('.section').forEach(s=>io.observe(s));
+
+</script>
+</body>
+</html>
